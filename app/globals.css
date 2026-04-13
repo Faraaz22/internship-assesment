@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0d1117;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+  50% { box-shadow: 0 0 25px 8px rgba(249, 115, 22, 0.2); }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(-3deg); }
+  50% { transform: translateY(-10px) rotate(-3deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0px) rotate(5deg); }
+  50% { transform: translateY(-7px) rotate(5deg); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0d1117; }
+::-webkit-scrollbar-thumb { background: rgba(249,115,22,0.5); border-radius: 3px; }
+
+/* Page-specific layout rules moved from inline styles */
+.hero-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 28px;
+  align-items: end;
+}
+
+.batches-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.desktop-nav { display: flex !important; }
+.desktop-login { display: inline !important; }
+.mobile-menu-btn { display: none !important; }
+.mobile-menu {
+  /* hidden by default; use .open to reveal with animation */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-8px);
+  transition: max-height 260ms ease, opacity 220ms ease, transform 220ms ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mobile-menu.open {
+  max-height: 420px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+  .batches-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 840px) {
+  .hero-bottom-grid { grid-template-columns: 1fr; gap: 20px; }
+  .desktop-nav { display: none !important; }
+  .desktop-login { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+  /* mobile menu shown via `.open` class */
+}
+
+/* Hide decorative arrow and jigsaw on smaller screens */
+@media (max-width: 840px) {
+  .arrow-container, .jigsaw {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .batches-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+}
+
+@media (max-width: 400px) {
+  .batches-grid { grid-template-columns: repeat(2, 1fr); }
+}
